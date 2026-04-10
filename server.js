@@ -35,29 +35,43 @@ app.post("/api/auth/login", async (req, res) => {
   const session = driver.session();
 
   try {
-    const result = await session.run(
-      `MATCH (u)
-       WHERE (u:Student OR u:Admin)
-       AND u.username = $username
-       AND u.password = $password
-       RETURN u.username AS username, u.role AS role`,
+    // First check if admin
+    const adminResult = await session.run(
+      `MATCH (a:Admin {username: $username, password: $password}) 
+       RETURN a.username AS username, a.role AS role`,
       { username, password }
     );
 
-    if (result.records.length === 0) {
-      return res.status(401).json({ error: "Invalid username or password" });
+    if (adminResult.records.length > 0) {
+      return res.json(adminResult.records[0].toObject());
     }
 
-    const user = result.records[0].toObject();
-    res.json(user);
+    // Check if student already exists
+    const studentResult = await session.run(
+      `MATCH (s:Student {username: $username, password: $password}) 
+       RETURN s.username AS username, s.role AS role`,
+      { username, password }
+    );
+
+    if (studentResult.records.length > 0) {
+      return res.json(studentResult.records[0].toObject());
+    }
+
+    // NEW USER — auto create student node in Neo4j
+    await session.run(
+      `CREATE (:Student {username: $username, password: $password, role: "student"})`,
+      { username, password }
+    );
+
+    return res.json({ username, role: "student" });
 
   } catch (err) {
+    console.error("Login error:", err);
     res.status(500).json({ error: err.message });
   } finally {
     await session.close();
   }
 });
-
 // ── GET ALL COMPLAINTS ─────────────────────────────
 app.get("/api/complaints", async (req, res) => {
   const session = driver.session();
