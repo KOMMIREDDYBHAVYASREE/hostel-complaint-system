@@ -11,10 +11,16 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 
 // ── REPLACE THESE WITH YOUR AURADB CREDENTIALS ──
-const NEO4J_URI      = "neo4j+s://ab3aacfd.databases.neo4j.io";
-const NEO4J_USER     = "ab3aacfd";
-const NEO4J_PASSWORD = "HjqzjpmNAjms9A8xbjsZIXmBY_lG2DEtiUNXiSX9swE";
-const NEO4J_DATABASE = "ab3aacfd";
+//const NEO4J_URI      = "neo4j+s://ab3aacfd.databases.neo4j.io";
+//const NEO4J_USER     = "ab3aacfd";
+//const NEO4J_PASSWORD = //"HjqzjpmNAjms9A8xbjsZIXmBY_lG2DEtiUNXiSX9swE";
+//const NEO4J_DATABASE = "ab3aacfd";
+
+const NEO4J_URI      = process.env.NEO4J_URI;
+const NEO4J_USER     = process.env.NEO4J_USER;
+const NEO4J_PASSWORD = process.env.NEO4J_PASSWORD;
+const NEO4J_DATABASE = process.env.NEO4J_DATABASE;
+
 // ─────────────────────────────────────────────────
 
 const driver = neo4j.driver(
@@ -150,6 +156,11 @@ app.delete("/api/complaints/:id", async (req, res) => {
 });
 
 // ── START SERVER ───────────────────────────────────
-app.listen(5000, () => {
-  console.log("✅ Server running at http://localhost:5000");
+//app.listen(5000, () => {
+//  console.log("✅ Server running at http://localhost:5000");
+//});
+
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`✅ Server running on port ${PORT}`);
 });
