@@ -185,24 +185,37 @@ function loadAdminComplaints() {
 // ===============================
 // UPDATE STATUS
 // ===============================
-function updateStatus(id) {
-    const newStatus = document.getElementById(`status-${id}`).value;
+complaintForm.addEventListener("submit", function (e) {
+    e.preventDefault();
 
-    fetch(`${API}/complaints/${id}`, {
-        method: "PUT",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ status: newStatus })
+    const category = document.getElementById("category").value;
+    const description = document.getElementById("description").value.trim();
+
+    fetch(`${API}/complaints`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            username: currentUser,
+            category,
+            description,
+            date: new Date().toLocaleString()
+        })
     })
     .then(res => res.json())
-    .then(() => {
-        alert("Status updated!");
-        loadAdminComplaints(); // refresh manually
+    .then(data => {
+        if (data.error) {
+            alert("Error: " + data.error);
+        } else {
+            alert("Complaint submitted!");
+            loadComplaints();
+            complaintForm.reset();
+        }
     })
-    .catch(err => console.error(err));
-}
-
+    .catch(err => {
+        alert("Failed to submit: " + err.message);
+        console.error(err);
+    });
+});
 // ===============================
 // LOGOUT
 // ===============================

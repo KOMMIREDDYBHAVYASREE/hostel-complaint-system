@@ -30,6 +30,7 @@ const driver = neo4j.driver(
 );
 
 // ── LOGIN ──────────────────────────────────────────
+
 app.post("/api/auth/login", async (req, res) => {
   const { username, password } = req.body;
   const session = driver.session();
@@ -72,32 +73,42 @@ app.post("/api/auth/login", async (req, res) => {
     await session.close();
   }
 });
+
 // ── GET ALL COMPLAINTS ─────────────────────────────
-app.get("/api/complaints", async (req, res) => {
+app.post("/api/complaints", async (req, res) => {
+  const { username, category, description, date } = req.body;
+  const id = Date.now().toString();
   const session = driver.session();
 
   try {
     const result = await session.run(
-      `MATCH (s)-[:SUBMITTED]->(c:Complaint)
-       RETURN c.id AS id,
-              s.username AS username,
-              c.category AS category,
-              c.description AS description,
-              c.status AS status,
-              c.date AS date
-       ORDER BY c.date DESC`
+      `MATCH (s:Student {username: $username})
+       CREATE (c:Complaint {
+         id: $id,
+         category: $category,
+         description: $description,
+         status: "Pending",
+         date: $date
+       })
+       CREATE (s)-[:SUBMITTED]->(c)
+       RETURN c`,
+      { username, category, description, date, id }
     );
 
-    const complaints = result.records.map(r => r.toObject());
-    res.json(complaints);
+    // Check if student was actually found
+    if (result.records.length === 0) {
+      return res.status(400).json({ error: "Student not found in database" });
+    }
+
+    res.json({ success: true, id });
 
   } catch (err) {
+    console.error("Complaint error:", err);
     res.status(500).json({ error: err.message });
   } finally {
     await session.close();
   }
 });
-
 // ── SUBMIT COMPLAINT ───────────────────────────────
 app.post("/api/complaints", async (req, res) => {
   const { username, category, description, date } = req.body;
