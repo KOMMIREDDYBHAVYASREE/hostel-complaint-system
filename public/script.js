@@ -1,7 +1,7 @@
 // ===============================
 // CONFIG
 // ===============================
-const API = "http://localhost:5000/api";
+const API = "https://hostel-complaint-system.onrender.com/api";
 let currentUser = localStorage.getItem("currentUser");
 
 // ===============================
