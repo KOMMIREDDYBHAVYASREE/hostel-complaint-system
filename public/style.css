@@ -1,0 +1,336 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #e0f2f1, #e3f2fd);
+    min-height: 100vh;
+    color: #333;
+}
+
+
+/* HEADER */
+header {
+    background: #003366;
+    color: white;
+    padding: 15px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header img {
+    height: 45px;
+}
+
+header h1 {
+    font-size: 22px;
+}
+
+/* FOOTER */
+footer {
+    background: #003366;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
+/* CENTER LOGIN */
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 140px);
+}
+
+/* CARD */
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+}
+
+.card h2 {
+    margin-bottom: 10px;
+}
+
+.card p {
+    font-size: 14px;
+    margin-bottom: 15px;
+    color: #555;
+}
+
+/* FORM ELEMENTS */
+input, select, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 12px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+textarea {
+    resize: none;
+    height: 80px;
+}
+
+button {
+    background: #003366;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #002244;
+}
+
+/* DASHBOARD */
+.dashboard {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    padding: 20px;
+}
+
+/* LIST */
+ul {
+    list-style: none;
+}
+
+ul li {
+    background: #f1f5f9;
+    padding: 10px;
+    margin-bottom: 8px;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+/* TABLE */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background: #003366;
+    color: white;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .dashboard {
+        grid-template-columns: 1fr;
+    }
+}
+/* =========================
+   STUDENT DASHBOARD STYLES
+========================= */
+
+.top-bar {
+    background: #003366;
+    color: white;
+    padding: 15px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.top-bar h1 {
+    font-size: 22px;
+}
+
+.logout-btn {
+    background: #ff4d4d;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+}
+
+.logout-btn:hover {
+    background: #e63939;
+}
+
+.student-dashboard {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    padding: 25px;
+}
+
+.panel {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.panel h2 {
+    margin-bottom: 5px;
+    font-size: 20px;
+}
+
+.subtext {
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.panel label {
+    font-size: 14px;
+    font-weight: 500;
+    margin-top: 10px;
+    display: block;
+}
+
+.panel select,
+.panel textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+.panel textarea {
+    resize: none;
+    height: 90px;
+}
+
+.primary-btn {
+    background: #003366;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.primary-btn:hover {
+    background: #002244;
+}
+
+/* Complaint list */
+.complaint-list {
+    list-style: none;
+    max-height: 300px;
+    overflow-y: auto;
+    padding-right: 5px;
+}
+
+.complaint-list li {
+    background: #f4f6f8;
+    padding: 12px;
+    margin-bottom: 10px;
+    border-left: 5px solid #ff4d4d;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .student-dashboard {
+        grid-template-columns: 1fr;
+    }
+}
+/* =========================
+   WELCOME PAGE
+========================= */
+
+.welcome-page {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    padding: 40px;
+}
+
+.welcome-card {
+    background: white;
+    padding: 30px;
+    border-radius: 14px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+    text-align: center;
+}
+
+.welcome-card h2 {
+    margin-bottom: 10px;
+    font-size: 22px;
+}
+
+.welcome-card p {
+    font-size: 14px;
+    margin-bottom: 10px;
+    color: #555;
+}
+
+.hint {
+    background: #f1fafa;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 13px;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+@media (max-width: 800px) {
+    .welcome-page {
+        grid-template-columns: 1fr;
+    }
+}
+/* =========================
+   ADMIN DASHBOARD
+========================= */
+
+.admin-dashboard {
+    padding: 25px;
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.admin-table th,
+.admin-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    font-size: 14px;
+    text-align: left;
+}
+
+.admin-table th {
+    background: #4f9da6;
+    color: white;
+}
+
+.admin-table select {
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.admin-table button {
+    padding: 6px 10px;
+    font-size: 13px;
+}
+

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="top-bar">
+    <h1>Student Dashboard</h1>
+    <button class="logout-btn" onclick="logout()">Logout</button>
+</header>
+
+<main class="student-dashboard">
+
+    <!-- LEFT: RAISE COMPLAINT -->
+    <section class="panel">
+        <h2>📢 Raise a Complaint</h2>
+        <p class="subtext">Report any hostel-related issue below</p>
+
+        <form id="complaintForm">
+            <label>Category</label>
+            <select id="category" required>
+                <option value="">Select Category</option>
+                <option>Water</option>
+                <option>Electricity</option>
+                <option>WiFi</option>
+                <option>Cleaning</option>
+                <option>Others</option>
+            </select>
+
+            <label>Description</label>
+            <textarea
+                id="description"
+                placeholder="Describe your issue clearly..."
+                required
+            ></textarea>
+
+            <button type="submit" class="primary-btn">Submit Complaint</button>
+        </form>
+    </section>
+
+    <!-- RIGHT: COMPLAINT LIST -->
+    <section class="panel">
+        <h2>📄 My Complaints</h2>
+        <p class="subtext">Track the status of your submitted complaints</p>
+
+        <ul id="complaintList" class="complaint-list">
+            <!-- JS inserts complaints here -->
+        </ul>
+    </section>
+
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>

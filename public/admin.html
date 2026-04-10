@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard | Hostel Complaint System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="top-bar">
+    <h1>🧑‍💼 Admin Dashboard</h1>
+    <button class="logout-btn" onclick="logout()">Logout</button>
+</header>
+
+<main class="admin-dashboard">
+
+    <section class="panel">
+        <h2>📋 All Student Complaints</h2>
+        <p class="subtext">Review complaints and update their status</p>
+
+        <table class="admin-table">
+            <thead>
+                <tr>
+                    <th>Reg No</th>
+                    <th>Category</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                    <th>Update</th>
+                </tr>
+            </thead>
+            <tbody id="adminTable">
+                <!-- Complaints loaded by JS -->
+            </tbody>
+        </table>
+    </section>
+
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome | Hostel Complaint System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1>Hostel Complaint Management System</h1>
+</header>
+
+<main class="welcome-page">
+
+    <section class="welcome-card">
+        <h2>👩‍🎓 Student Login</h2>
+        <p>
+            Use your <strong>registration number</strong> as username.<br>
+            Enter any password to login.
+        </p>
+
+        <p class="hint">
+            Example:<br>
+            Username: 21BCE1234<br>
+            Password: anything
+        </p>
+
+        <button onclick="goToLogin()">Login as Student</button>
+    </section>
+
+    <section class="welcome-card">
+        <h2>🧑‍💼 Admin Login</h2>
+        <p>
+            Login using the <strong>admin username</strong>.<br>
+            Password can be anything.
+        </p>
+
+        <p class="hint">
+            Example:<br>
+            Username: admin<br>
+            Password: anything
+        </p>
+
+        <button onclick="goToLogin()">Login as Admin</button>
+    </section>
+
+</main>
+
+<footer>
+    © VIT-AP University
+</footer>
+
+<script>
+    function goToLogin() {
+        window.location.href = "index.html";
+    }
+</script>
+
+</body>
+</html>
